@@ -1,0 +1,95 @@
+.dashboard-container {
+  display: flex;
+  height: 100vh; /* Full viewport height */
+  overflow: hidden;
+}
+
+
+/* Sidebar stays fixed */
+.sidebar {
+  width: 220px;
+  background-color: #1f2937; /* dark gray (tailwind-inspired) */
+  color: white;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden; /* Prevent sidebar scrolling */
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.sidebar li {
+  padding: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 0.5rem;
+}
+
+.sidebar li.active,
+.sidebar li:hover {
+  background-color: #374151; /* slightly lighter */
+}
+
+/* Scrollable content area */
+.content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  height: 100vh;
+  background-color: #f0f3fa;
+}
+
+.widget-container {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  justify-content: flex-start;
+}
+
+.widget-card {
+  background: linear-gradient(135deg, #ffffffcc, #f7f7f7cc);
+  backdrop-filter: blur(10px);
+  border: 1px solid #e0e0e0;
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  min-width: 240px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.widget-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+}
+
+.completed-widget h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4caf50;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.completed-widget .count {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2e7d32;
+}
+
+
+
