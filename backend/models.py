@@ -37,6 +37,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+from sqlalchemy import Text
+
 
 db = SQLAlchemy()
 
@@ -65,5 +67,5 @@ class Appointment(db.Model):
     fee = db.Column(db.Float, nullable=False)
     status = db.Column(db.String(20), nullable=False, default='Scheduled')
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
-
+    notes = db.Column(Text)  # New field for rich-text notes
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)

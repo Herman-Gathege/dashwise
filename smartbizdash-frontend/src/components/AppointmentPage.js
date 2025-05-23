@@ -393,7 +393,10 @@
 // export default AppointmentPage;
 
 import React, { useEffect, useState, useCallback } from "react";
+
 import "../styles/AppointmentPage.css";
+import { useNavigate } from "react-router-dom";
+
 import {
   fetchAppointments,
   saveAppointment,
@@ -411,6 +414,9 @@ function AppointmentPage() {
     fee: "",
     status: "Scheduled",
   });
+
+  const navigate = useNavigate();
+
   const [appointments, setAppointments] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -636,12 +642,19 @@ function AppointmentPage() {
                           ✓
                         </button>
                         <button
+                          onClick={() => navigate(`/appointments/${appt.id}`)}
+                          className="appt-btn appt-btn-info"
+                        >
+                          View
+                        </button>
+                        <button
                           onClick={() => updateStatus(appt.id, "Cancelled")}
                           className="appt-btn appt-btn-secondary"
                           aria-label={`Cancel appointment with ${appt.clientName}`}
                         >
                           ✕
                         </button>
+
                         <button
                           onClick={() => handleEdit(appt)}
                           className="appt-btn appt-btn-warning"
@@ -702,6 +715,13 @@ function AppointmentPage() {
                         ✓
                       </button>
                       <button
+                        onClick={() => navigate(`/appointments/${appt.id}`)}
+                        className="appt-btn appt-btn-info"
+                      >
+                        View
+                      </button>
+
+                      <button
                         onClick={() => updateStatus(appt.id, "Cancelled")}
                         className="appt-btn appt-btn-secondary"
                         aria-label="Cancel Appointment"
@@ -709,12 +729,12 @@ function AppointmentPage() {
                         ✕
                       </button>
                       <button
-                          onClick={() => handleEdit(appt)}
-                          className="appt-btn appt-btn-warning"
-                          aria-label={`Edit appointment with ${appt.clientName}`}
-                        >
-                          ✎
-                        </button>
+                        onClick={() => handleEdit(appt)}
+                        className="appt-btn appt-btn-warning"
+                        aria-label={`Edit appointment with ${appt.clientName}`}
+                      >
+                        ✎
+                      </button>
                       <button
                         onClick={() => handleDelete(appt.id)}
                         className="appt-btn appt-btn-danger"

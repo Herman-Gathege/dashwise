@@ -19,6 +19,7 @@ def create_appointment():
             time=data["time"],
             fee=float(data["fee"]),
             status=data.get('status', 'Scheduled'),
+            notes=data.get('notes', ''),
             user_id=user_id
         )
         db.session.add(new_appointment)
@@ -44,7 +45,9 @@ def get_appointments():
             "date": appt.date,
             "time": appt.time,
             "fee": appt.fee,
-            "status": appt.status
+            "status": appt.status,
+            "notes": appt.notes
+            
         }
         for appt in appointments
     ]
@@ -84,6 +87,7 @@ def update_appointment(appointment_id):
         appointment.time = data.get("time", appointment.time)
         appointment.fee = float(data.get("fee", appointment.fee))
         appointment.status = data.get("status", appointment.status)
+        appointment.notes = data.get("notes", appointment.notes)
 
 
         db.session.commit()
@@ -91,3 +95,24 @@ def update_appointment(appointment_id):
 
     except Exception as e:
         return jsonify({"error": "Failed to update appointment", "details": str(e)}), 500
+
+@appointments_bp.route("/appointments/<int:appointment_id>", methods=["GET"])
+@jwt_required()
+def get_single_appointment(appointment_id):
+    user_id = get_jwt_identity()
+    appointment = Appointment.query.filter_by(id=appointment_id, user_id=user_id).first()
+
+    if not appointment:
+        return jsonify({"error": "Appointment not found or unauthorized"}), 404
+
+    return jsonify({
+        "id": appointment.id,
+        "clientName": appointment.client_name,
+        "clientContact": appointment.client_contact,
+        "service": appointment.service,
+        "date": appointment.date,
+        "time": appointment.time,
+        "fee": appointment.fee,
+        "status": appointment.status,
+        "notes": appointment.notes
+    }), 200
