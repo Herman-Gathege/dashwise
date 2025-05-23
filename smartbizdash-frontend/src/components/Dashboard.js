@@ -5,6 +5,7 @@ import "../styles/Dashboard.css"; // Optional: style like TeacherDashboard
 import CompletedAppointmentsWidget from "./CompletedAppointmentsWidget";
 import Navbar from "./Navbar"; // Adjust path if needed
 
+
 function Dashboard() {
   const [email, setEmail] = useState("");
   const [activeSection, setActiveSection] = useState("dashboard");

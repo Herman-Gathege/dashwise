@@ -1,0 +1,31 @@
+.widget-card {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.widget-card:hover {
+  transform: translateY(-2px);
+}
+
+.widget-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+
+.completed-widget .count {
+  font-size: 28px;
+  font-weight: bold;
+  color: #053f5c;
+  margin-top: 10px;
+}
+.widget-icon {
+  font-size: 24px;
+  color: #053f5c; /* green tone for success */
+}
