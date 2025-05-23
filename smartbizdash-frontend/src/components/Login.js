@@ -4,12 +4,16 @@ import { useNavigate } from 'react-router-dom';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setError('');
+
     if (!email || !password) {
-      alert("Please enter both email and password.");
+      setError("Please enter both email and password.");
       return;
     }
 
@@ -28,11 +32,11 @@ function Login() {
         localStorage.setItem('token', data.token);
         navigate('/dashboard');
       } else {
-        alert(data.error || 'Login failed.');
+        setError(data.error || 'Login failed.');
       }
     } catch (err) {
       setLoading(false);
-      alert('An error occurred. Please try again.');
+      setError('An error occurred. Please try again.');
     }
   };
 
@@ -42,35 +46,49 @@ function Login() {
         <div className="card shadow-sm p-4 border-primary">
           <h3 className="text-center mb-4 text-primary">Welcome Back</h3>
 
-          <div className="form-group mb-3">
-            <label>Email</label>
-            <input
-              className="form-control"
-              type="email"
-              placeholder="Enter email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
+          {error && <div className="alert alert-danger">{error}</div>}
 
-          <div className="form-group mb-4">
-            <label>Password</label>
-            <input
-              className="form-control"
-              type="password"
-              placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+          <form onSubmit={handleLogin}>
+            <div className="form-group mb-3">
+              <label htmlFor="loginEmail">Email</label>
+              <input
+                id="loginEmail"
+                name="email"
+                className="form-control"
+                type="email"
+                placeholder="Enter email"
+                autoComplete="email"
+                autoFocus
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
 
-          <button
-            className="btn btn-primary w-100 mb-3"
-            onClick={handleLogin}
-            disabled={loading}
-          >
-            {loading ? 'Logging in...' : 'Log In'}
-          </button>
+            <div className="form-group mb-4">
+              <label htmlFor="loginPassword">Password</label>
+              <input
+                id="loginPassword"
+                name="password"
+                className="form-control"
+                type="password"
+                placeholder="Enter password"
+                autoComplete="current-password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            <button
+              className="btn btn-primary w-100 mb-3"
+              type="submit"
+              disabled={loading || !email || !password}
+              title="Log In"
+            >
+              {loading ? 'Logging in...' : 'Log In'}
+            </button>
+          </form>
 
           <div className="text-center mt-3">
             <h6 className="mb-2">Don't have an account?</h6>

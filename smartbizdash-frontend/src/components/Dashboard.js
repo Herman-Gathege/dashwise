@@ -5,6 +5,7 @@ import "../styles/Dashboard.css"; // Optional: style like TeacherDashboard
 import CompletedAppointmentsWidget from "./CompletedAppointmentsWidget";
 import Navbar from "./Navbar"; // Adjust path if needed
 import RevenueTracker from "./RevenueTracker";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
   const [email, setEmail] = useState("");
@@ -78,49 +79,11 @@ function Dashboard() {
   };
 
   return (
-    // <div className="dashboard-container">
-    //   <div className="sidebar">
-    //     <img src="/logodash.png" alt="SmartBizDash Logo" className="logo" />
-    //     <ul>
-    //       <li
-    //         onClick={() => setActiveSection("dashboard")}
-    //         className={activeSection === "dashboard" ? "active" : ""}
-    //       >
-    //         Dashboard
-    //       </li>
-    //       <li
-    //         onClick={() => setActiveSection("appointments")}
-    //         className={activeSection === "appointments" ? "active" : ""}
-    //       >
-    //         Appointments
-    //       </li>
-    //       <li onClick={logout}>Logout</li>
-    //     </ul>
-    //   </div>
-
-    //   <div className="content">
-    //     {/* <h2>
-    //       {activeSection === "appointments"
-    //         ? "Appointment Manager"
-    //         : "Dashboard"}
-    //     </h2> */}
-
-    //     <Navbar
-    //       title={
-    //         activeSection === "appointments"
-    //           ? "Appointment Manager"
-    //           : "Dashboard"
-    //       }
-    //       email={email}
-    //     />
-
-    //     {renderContent()}
-    //   </div>
-    // </div>
-
     <div className="dashboard-container">
       <div className={`sidebar ${isSidebarOpen ? "open" : "collapsed"}`}>
-        <img src="/logodash.png" alt="SmartBizDash Logo" className="logo" />
+        <Link to="/">
+          <img src="/logodash.png" alt="SmartBizDash Logo" className="logo" />
+        </Link>{" "}
         <ul>
           <li
             onClick={() => {

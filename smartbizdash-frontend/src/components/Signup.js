@@ -4,12 +4,16 @@ import { useNavigate } from 'react-router-dom';
 function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSignup = async () => {
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    setError('');
+
     if (!email || !password) {
-      alert("Please enter both email and password.");
+      setError("Please enter both email and password.");
       return;
     }
 
@@ -28,11 +32,11 @@ function Signup() {
         alert('Signup successful! Please log in.');
         navigate('/login');
       } else {
-        alert(data.error || 'Signup failed.');
+        setError(data.error || 'Signup failed.');
       }
     } catch (error) {
       setLoading(false);
-      alert('An error occurred. Please try again.');
+      setError('An error occurred. Please try again.');
     }
   };
 
@@ -42,35 +46,49 @@ function Signup() {
         <div className="card shadow-sm p-4">
           <h3 className="text-center mb-4">Create Account</h3>
 
-          <div className="form-group mb-3">
-            <label>Email</label>
-            <input
-              className="form-control"
-              placeholder="Enter email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
+          {error && <div className="alert alert-danger">{error}</div>}
 
-          <div className="form-group mb-4">
-            <label>Password</label>
-            <input
-              className="form-control"
-              placeholder="Enter password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+          <form onSubmit={handleSignup}>
+            <div className="form-group mb-3">
+              <label htmlFor="signupEmail">Email</label>
+              <input
+                id="signupEmail"
+                name="email"
+                className="form-control"
+                placeholder="Enter email"
+                type="email"
+                autoComplete="email"
+                autoFocus
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
 
-          <button
-            className="btn btn-primary w-100"
-            onClick={handleSignup}
-            disabled={loading}
-          >
-            {loading ? 'Signing up...' : 'Sign Up'}
-          </button>
+            <div className="form-group mb-4">
+              <label htmlFor="signupPassword">Password</label>
+              <input
+                id="signupPassword"
+                name="password"
+                className="form-control"
+                placeholder="Enter password"
+                type="password"
+                autoComplete="new-password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            <button
+              className="btn btn-primary w-100"
+              type="submit"
+              disabled={loading || !email || !password}
+            >
+              {loading ? 'Signing up...' : 'Sign Up'}
+            </button>
+          </form>
+
           <div className="text-center mt-3">
             <h6 className="mb-2">Already have an account?</h6>
             <button
@@ -78,7 +96,7 @@ function Signup() {
               onClick={() => navigate('/login')}
               disabled={loading}
             >
-              {loading ? 'Redirecting...' : 'login'}
+              {loading ? 'Redirecting...' : 'Login'}
             </button>
           </div>
         </div>
