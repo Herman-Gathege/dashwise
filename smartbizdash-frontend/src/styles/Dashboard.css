@@ -1,15 +1,22 @@
 .dashboard-container {
   display: flex;
-  height: 100vh; /* Full viewport height */
+  height: 100vh;
   overflow: hidden;
+  flex-direction: row;
+}
+
+.logo {
+  width: 100px;       /* Resize logo width */
+  height: auto;       /* Maintain aspect ratio */
+  margin-bottom: 2rem;
+  align-self: center; /* Center the logo horizontally */
 }
 
 
-/* Sidebar stays fixed */
 .sidebar {
   width: 220px;
-  background-color: #1f2937; /* dark gray (tailwind-inspired) */
-  color: white;
+  background-color: #F2F2F2; /* White background */
+  color: #053f5c; /* Dark Blue Text (Tailwind: blue-900) */
   padding: 2rem 1rem;
   display: flex;
   flex-direction: column;
@@ -17,7 +24,10 @@
   position: sticky;
   top: 0;
   height: 100vh;
-  overflow: hidden; /* Prevent sidebar scrolling */
+  overflow: hidden;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05); /* subtle right shadow */
+  transition: transform 0.3s ease;
+  border-right: 1px solid #e5e7eb; /* Tailwind: gray-200 */
 }
 
 .sidebar ul {
@@ -28,18 +38,23 @@
 }
 
 .sidebar li {
-  padding: 1rem;
+  padding: 0.75rem 1rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background-color 0.2s, color 0.2s;
   border-radius: 0.5rem;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
 }
 
 .sidebar li.active,
 .sidebar li:hover {
-  background-color: #374151; /* slightly lighter */
+  background-color: #e8f6ff; /* Tailwind: blue-100 */
+  color: #429ebd; /* Tailwind: blue-700 */
+  border-left: 4px solid #b7d2ff; /* Tailwind: blue-500 */
+  padding-left: calc(1rem - 4px); /* adjust padding */
 }
 
-/* Scrollable content area */
+
 .content {
   flex: 1;
   padding: 2rem;
@@ -77,19 +92,89 @@
 }
 
 .completed-widget h4 {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #4caf50;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #429ebd;
   margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .completed-widget .count {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #2e7d32;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #053f5c;
 }
 
+.welcome-message {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #053f5c;
+  margin-bottom: 1rem;
+}
 
+/* 💡 Media Queries for Responsiveness */
 
+@media (max-width: 1024px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .sidebar ul {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .sidebar li {
+    padding: 0.75rem 1rem;
+  }
+
+  .content {
+    padding: 1rem;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .widget-card {
+    width: 100%;
+    min-width: unset;
+    padding: 1rem;
+  }
+
+  .widget-container {
+    gap: 1rem;
+  }
+
+  .completed-widget .count {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar ul {
+    gap: 0.5rem;
+  }
+
+  .sidebar li {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .content {
+    padding: 0.75rem;
+  }
+
+  .widget-card {
+    padding: 0.75rem 1rem;
+  }
+}

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AppointmentPage from "./AppointmentPage"; // You'll create this
 import "../styles/Dashboard.css"; // Optional: style like TeacherDashboard
 import CompletedAppointmentsWidget from "./CompletedAppointmentsWidget";
+import Navbar from "./Navbar"; // Adjust path if needed
 
 function Dashboard() {
   const [email, setEmail] = useState("");
@@ -57,10 +58,9 @@ function Dashboard() {
       case "dashboard":
         return (
           <>
-            <h3>Welcome, {email}! 👋</h3>
+            <h3 className="welcome-message">Welcome, {email}! 👋</h3>
             <div className="widget-container">
               <CompletedAppointmentsWidget />
-              
             </div>
           </>
         );
@@ -74,6 +74,7 @@ function Dashboard() {
   return (
     <div className="dashboard-container">
       <div className="sidebar">
+        <img src="/logodash.png" alt="SmartBizDash Logo" className="logo" />
         <ul>
           <li
             onClick={() => setActiveSection("dashboard")}
@@ -92,11 +93,21 @@ function Dashboard() {
       </div>
 
       <div className="content">
-        <h2>
+        {/* <h2>
           {activeSection === "appointments"
             ? "Appointment Manager"
             : "Dashboard"}
-        </h2>
+        </h2> */}
+
+        <Navbar
+          title={
+            activeSection === "appointments"
+              ? "Appointment Manager"
+              : "Dashboard"
+          }
+          email={email}
+        />
+
         {renderContent()}
       </div>
     </div>

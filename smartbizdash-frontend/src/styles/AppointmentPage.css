@@ -1,100 +1,163 @@
+/* Container and typography */
 .appt-container {
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 1140px; /* increased from 960px */
+  margin: 1.5rem auto 3rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
-}
-
-.appt-title {
-  font-weight: 700;
-  font-size: 1.8rem;
   color: #222;
-  margin-bottom: 1rem;
-  border-bottom: 2px solid #638ecb;
-  padding-bottom: 0.3rem;
+  padding: 0 2rem; /* increased horizontal padding */
+  background-color: #F2F2F2;
 }
 
+
+/* Form styling */
 .appt-form {
-  background: #f9faff;
-  padding: 1.5rem 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgb(74 144 226 / 0.15);
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem;
+}
+
+.form-head {
+  grid-column: 1/-1;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #429ebd;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #429ebd;
+  padding-bottom: 0.5rem;
 }
 
 .appt-input,
 .appt-select {
-  border-radius: 6px;
-  border: 1.5px solid #cbd5e1;
-  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  border: 1.8px solid #ddd;
+  padding: 0.65rem 1rem;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .appt-input:focus,
 .appt-select:focus {
   outline: none;
-  border-color: #4a90e2;
-  box-shadow: 0 0 6px #4a90e2aa;
+  border-color: #429ebd;
+  box-shadow: 0 0 8px rgba(52, 97, 255, 0.35);
 }
 
+/* Submit button full width on mobile */
 .appt-btn-submit {
-  margin-top: 0.8rem;
-  padding: 0.6rem 1.4rem;
-  font-weight: 600;
-  font-size: 1rem;
-  border-radius: 6px;
-  box-shadow: 0 3px 6px rgb(74 144 226 / 0.3);
+  grid-column: 1/-1;
+  padding: 0.75rem 0;
+  background: #429ebd;
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 5px 12px rgba(52, 97, 255, 0.4);
   transition: background-color 0.3s ease;
 }
 
 .appt-btn-submit:hover {
-  background-color: #357abd;
+  background-color: #274bb5;
 }
 
-.appt-subtitle {
-  font-weight: 600;
-  font-size: 1.4rem;
-  margin-top: 2rem;
+/* Search input */
+.appt-search {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: 1.8px solid #ddd;
+  width: 100%;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.appt-search:focus {
+  outline: none;
+  border-color: #429ebd;
+  box-shadow: 0 0 8px rgba(52, 97, 255, 0.35);
+}
+
+/* Appointment list as cards on mobile */
+.appt-list-section {
+  margin-top: 1rem;
+}
+
+.appt-list-section h5 {
+  color: #429ebd;
+  font-weight: 700;
   margin-bottom: 1rem;
-  color: #4a90e2;
+  font-size: 1.4rem;
 }
 
+/* No appointments message */
 .appt-no-appointments {
   font-style: italic;
   color: #666;
+  text-align: center;
+  margin-top: 2rem;
 }
 
+/* Table styling for desktop */
 .appt-table {
   width: 100%;
   border-collapse: separate;
-  border-spacing: 0 8px;
+  border-spacing: 0 12px;
+  table-layout: fixed;
+}
+
+.appt-table thead tr th {
+  text-align: left;
+  font-weight: 700;
+  padding: 0.6rem 0.8rem;
+  color: #555;
+  border-bottom: 2px solid #429ebd;
 }
 
 .appt-row {
-  background: #f3f7ff;
-  border-radius: 10px;
+  background: #f5f9ff;
+  border-radius: 12px;
   transition: background-color 0.2s ease;
+  box-shadow: 0 2px 6px rgba(52, 97, 255, 0.1);
 }
 
 .appt-row:hover {
-  background-color: #e4edff;
+  background-color: #e0e9ff;
 }
 
+/* Cells padding */
+.appt-row td {
+  padding: 0.7rem 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+
+/* Status badges */
 .appt-status {
-  padding: 0.25rem 0.6rem;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 0.9rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 0.85rem;
   text-align: center;
-  min-width: 80px;
+  min-width: 90px;
   display: inline-block;
   color: white;
   user-select: none;
+  letter-spacing: 0.03em;
 }
 
-/* Status variants */
 .appt-status-scheduled {
-  background-color: #638ecb; /* blue */
+  background-color: #429ebd; /* blue */
 }
 
 .appt-status-complete {
@@ -105,31 +168,42 @@
   background-color: #6c757d; /* gray */
 }
 
+/* Action buttons */
 .appt-actions {
   display: flex;
-  gap: 0.3rem;
-  flex-wrap: wrap;
+  gap: 0.5rem;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .appt-btn {
-  border-radius: 6px;
-  padding: 0.3rem 0.7rem;
-  font-size: 0.85rem;
-  font-weight: 600;
+  background: #eee;
+  border-radius: 8px;
+  padding: 0.35rem 0.8rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
   transition: background-color 0.3s ease;
-  user-select: none;
-  min-width: 32px;
-  height: 30px;
+  min-width: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
+  user-select: none;
+  border: none;
+  color: #444;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.07);
 }
 
-/* Override Bootstrap btn-sm colors with custom hover */
+.appt-btn:hover {
+  background-color: #429ebd;
+  color: white;
+  box-shadow: 0 4px 12px rgba(52, 97, 255, 0.5);
+}
 
+/* Specific button colors */
 .appt-btn-success:hover {
-  background-color: #1e7e34 !important;
+  background-color: #218838 !important;
 }
 
 .appt-btn-secondary:hover {
@@ -137,9 +211,120 @@
 }
 
 .appt-btn-warning:hover {
-  background-color: #638ecb !important;
+  background-color: #f0ad4e !important;
+  color: black !important;
 }
 
 .appt-btn-danger:hover {
-  background-color: #638ecb !important;
+  background-color: #dc3545 !important;
+  color: white !important;
+}
+
+/* Pagination */
+.appt-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 2rem;
+}
+
+.appt-pagination button {
+  padding: 0.45rem 0.9rem;
+  border-radius: 10px;
+  border: 1.8px solid #ddd;
+  background: white;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.appt-pagination button.active {
+  background: #429ebd;
+  color: white;
+  border-color: #429ebd;
+  box-shadow: 0 0 8px rgba(52, 97, 255, 0.5);
+}
+
+.appt-pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive - Mobile & Tablet */
+
+/* Switch to card layout on narrow screens */
+@media (max-width: 900px) {
+  .appt-table {
+    display: none;
+  }
+
+  
+
+  .appt-list-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.3rem;
+  }
+
+  /* Each appointment as card */
+  .appt-list-section > table + p,
+  .appt-list-section > p {
+    grid-column: 1/-1;
+  }
+
+  .appt-card {
+    background: #f5f9ff;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 3px 12px rgba(52, 97, 255, 0.12);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .appt-card-row {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .appt-card-actions {
+    margin-top: 0.8rem;
+    display: flex;
+    gap: 0.6rem;
+    justify-content: flex-end;
+  }
+}
+
+/* Form and buttons stacking on smaller screens */
+@media (max-width: 520px) {
+  .appt-form {
+    grid-template-columns: 1fr;
+  }
+
+  .appt-btn-submit {
+    font-size: 1.2rem;
+  }
+}
+
+/* Hide the cards on desktop */
+@media (min-width: 768px) {
+  .appt-card-list {
+    display: none;
+  }
+  .appt-table {
+    display: table; /* Ensure table shows on desktop */
+  }
+}
+
+/* Hide the table on mobile */
+@media (max-width: 767px) {
+  .appt-table {
+    display: none;
+  }
+  .appt-card-list {
+    display: block; /* Show cards on mobile */
+  }
 }
