@@ -178,3 +178,44 @@
     padding: 0.75rem 1rem;
   }
 }
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  color: #053f5c;
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    z-index: 1000;
+    background-color: #F2F2F2;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .content {
+    padding: 1rem;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .dashboard-container {
+    flex-direction: column;
+  }
+}
+

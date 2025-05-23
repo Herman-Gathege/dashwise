@@ -4,11 +4,14 @@ import AppointmentPage from "./AppointmentPage"; // You'll create this
 import "../styles/Dashboard.css"; // Optional: style like TeacherDashboard
 import CompletedAppointmentsWidget from "./CompletedAppointmentsWidget";
 import Navbar from "./Navbar"; // Adjust path if needed
-
+import RevenueTracker from "./RevenueTracker";
 
 function Dashboard() {
   const [email, setEmail] = useState("");
   const [activeSection, setActiveSection] = useState("dashboard");
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -67,43 +70,101 @@ function Dashboard() {
         );
       case "appointments":
         return <AppointmentPage />;
+      case "revenue":
+        return <RevenueTracker />;
       default:
         return <p>Select a section from the sidebar.</p>;
     }
   };
 
   return (
+    // <div className="dashboard-container">
+    //   <div className="sidebar">
+    //     <img src="/logodash.png" alt="SmartBizDash Logo" className="logo" />
+    //     <ul>
+    //       <li
+    //         onClick={() => setActiveSection("dashboard")}
+    //         className={activeSection === "dashboard" ? "active" : ""}
+    //       >
+    //         Dashboard
+    //       </li>
+    //       <li
+    //         onClick={() => setActiveSection("appointments")}
+    //         className={activeSection === "appointments" ? "active" : ""}
+    //       >
+    //         Appointments
+    //       </li>
+    //       <li onClick={logout}>Logout</li>
+    //     </ul>
+    //   </div>
+
+    //   <div className="content">
+    //     {/* <h2>
+    //       {activeSection === "appointments"
+    //         ? "Appointment Manager"
+    //         : "Dashboard"}
+    //     </h2> */}
+
+    //     <Navbar
+    //       title={
+    //         activeSection === "appointments"
+    //           ? "Appointment Manager"
+    //           : "Dashboard"
+    //       }
+    //       email={email}
+    //     />
+
+    //     {renderContent()}
+    //   </div>
+    // </div>
+
     <div className="dashboard-container">
-      <div className="sidebar">
+      <div className={`sidebar ${isSidebarOpen ? "open" : "collapsed"}`}>
         <img src="/logodash.png" alt="SmartBizDash Logo" className="logo" />
         <ul>
           <li
-            onClick={() => setActiveSection("dashboard")}
+            onClick={() => {
+              setActiveSection("dashboard");
+              setSidebarOpen(false);
+            }}
             className={activeSection === "dashboard" ? "active" : ""}
           >
             Dashboard
           </li>
           <li
-            onClick={() => setActiveSection("appointments")}
+            onClick={() => {
+              setActiveSection("appointments");
+              setSidebarOpen(false);
+            }}
             className={activeSection === "appointments" ? "active" : ""}
           >
             Appointments
+          </li>
+          <li
+            onClick={() => {
+              setActiveSection("revenue");
+              setSidebarOpen(false);
+            }}
+            className={activeSection === "revenue" ? "active" : ""}
+          >
+            RevenueTracker
           </li>
           <li onClick={logout}>Logout</li>
         </ul>
       </div>
 
       <div className="content">
-        {/* <h2>
-          {activeSection === "appointments"
-            ? "Appointment Manager"
-            : "Dashboard"}
-        </h2> */}
+        {/* Hamburger button for mobile */}
+        <button className="hamburger" onClick={toggleSidebar}>
+          ☰
+        </button>
 
         <Navbar
           title={
             activeSection === "appointments"
               ? "Appointment Manager"
+              : activeSection === "revenue"
+              ? "Revenue Tracker"
               : "Dashboard"
           }
           email={email}

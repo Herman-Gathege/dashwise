@@ -638,12 +638,15 @@ function AppointmentPage() {
                           onClick={() => updateStatus(appt.id, "Complete")}
                           className="appt-btn appt-btn-success"
                           aria-label={`Mark appointment with ${appt.clientName} complete`}
+                          title="Complete"
                         >
                           ✓
                         </button>
                         <button
                           onClick={() => navigate(`/appointments/${appt.id}`)}
                           className="appt-btn appt-btn-info"
+                          aria-label={`View appointment with ${appt.clientName}`}
+                          title="View"
                         >
                           View
                         </button>
@@ -651,6 +654,7 @@ function AppointmentPage() {
                           onClick={() => updateStatus(appt.id, "Cancelled")}
                           className="appt-btn appt-btn-secondary"
                           aria-label={`Cancel appointment with ${appt.clientName}`}
+                          title="Cancel"
                         >
                           ✕
                         </button>
@@ -659,6 +663,7 @@ function AppointmentPage() {
                           onClick={() => handleEdit(appt)}
                           className="appt-btn appt-btn-warning"
                           aria-label={`Edit appointment with ${appt.clientName}`}
+                          title="Edit"
                         >
                           ✎
                         </button>
@@ -666,6 +671,7 @@ function AppointmentPage() {
                           onClick={() => handleDelete(appt.id)}
                           className="appt-btn appt-btn-danger"
                           aria-label={`Delete appointment with ${appt.clientName}`}
+                          title="Delete"
                         >
                           🗑
                         </button>
@@ -711,12 +717,14 @@ function AppointmentPage() {
                         onClick={() => updateStatus(appt.id, "Complete")}
                         className="appt-btn appt-btn-success"
                         aria-label="Mark Complete"
+                        title="Mark Complete"
                       >
                         ✓
                       </button>
                       <button
                         onClick={() => navigate(`/appointments/${appt.id}`)}
                         className="appt-btn appt-btn-info"
+                        title="View"
                       >
                         View
                       </button>
@@ -725,6 +733,7 @@ function AppointmentPage() {
                         onClick={() => updateStatus(appt.id, "Cancelled")}
                         className="appt-btn appt-btn-secondary"
                         aria-label="Cancel Appointment"
+                        title="Cancel"
                       >
                         ✕
                       </button>
@@ -732,6 +741,7 @@ function AppointmentPage() {
                         onClick={() => handleEdit(appt)}
                         className="appt-btn appt-btn-warning"
                         aria-label={`Edit appointment with ${appt.clientName}`}
+                        title="Edit"
                       >
                         ✎
                       </button>
@@ -739,6 +749,7 @@ function AppointmentPage() {
                         onClick={() => handleDelete(appt.id)}
                         className="appt-btn appt-btn-danger"
                         aria-label="Delete Appointment"
+                        title="Delete"
                       >
                         🗑
                       </button>
@@ -754,6 +765,8 @@ function AppointmentPage() {
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
+              aria-label="Previous Page"
+              title="Previous Page"
             >
               Previous
             </button>
@@ -762,6 +775,8 @@ function AppointmentPage() {
                 key={i}
                 className={currentPage === i + 1 ? "active" : ""}
                 onClick={() => setCurrentPage(i + 1)}
+                aria-label={`Go to page ${i + 1}`}
+                title={`Go to page ${i + 1}`}
               >
                 {i + 1}
               </button>
@@ -771,6 +786,8 @@ function AppointmentPage() {
                 setCurrentPage((prev) => Math.min(prev + 1, totalPages))
               }
               disabled={currentPage === totalPages}
+              aria-label="Next Page"
+              title="Next Page"
             >
               Next
             </button>
