@@ -244,7 +244,7 @@ function AppointmentPage() {
 
         {/* Appointment list section */}
         <div className="appt-list-section">
-          <h5>Your Appointments</h5>
+          <h4 className="form-head">Your Appointments</h4>
 
           {appointments.length === 0 ? (
             <p className="appt-no-appointments">No appointments yet.</p>

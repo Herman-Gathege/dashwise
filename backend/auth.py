@@ -1,37 +1,3 @@
-# from flask import Blueprint, request, jsonify
-# from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
-# from models import db, User
-
-# auth_bp = Blueprint('auth', __name__)
-
-# @auth_bp.route('/signup', methods=['POST'])
-# def signup():
-#     data = request.json
-#     if User.query.filter_by(email=data['email']).first():
-#         return jsonify({'error': 'User already exists'}), 400
-#     user = User(email=data['email'])
-#     user.set_password(data['password'])
-#     db.session.add(user)
-#     db.session.commit()
-#     return jsonify({'message': 'User created'}), 201
-
-# @auth_bp.route('/login', methods=['POST'])
-# def login():
-#     data = request.json
-#     user = User.query.filter_by(email=data['email']).first()
-#     if user and user.check_password(data['password']):
-#         access_token = create_access_token(identity=str(user.id))  # <-- fix here
-#         return jsonify({'token': access_token}), 200
-#     return jsonify({'error': 'Invalid credentials'}), 401
-
-# @auth_bp.route('/me', methods=['GET'])
-# @jwt_required()
-# def me():
-#     user_id = int(get_jwt_identity())  # <-- fix here
-#     user = User.query.get(user_id)
-#     return jsonify({'email': user.email}), 200
-
-
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from models import db, User

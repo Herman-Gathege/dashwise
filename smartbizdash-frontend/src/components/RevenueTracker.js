@@ -122,7 +122,7 @@ function RevenueTracker() {
     plugins: {
       legend: {
         labels: {
-          color: "#429ebd",
+          color: "#053f5c",
           font: {
             size: 16,
             weight: "bold",

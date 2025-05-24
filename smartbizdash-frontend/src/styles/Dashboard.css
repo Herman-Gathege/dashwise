@@ -48,11 +48,16 @@
 
 .sidebar li.active,
 .sidebar li:hover {
-  background-color: #e8f6ff; /* Tailwind: blue-100 */
-  color: #429ebd; /* Tailwind: blue-700 */
-  border-left: 4px solid #b7d2ff; /* Tailwind: blue-500 */
-  padding-left: calc(1rem - 4px); /* adjust padding */
+  background-color: #e0f2fe; /* Tailwind: sky-100 */
+  color: #0369a1; /* Tailwind: sky-700 */
+  border-left: 4px solid #0ea5e9; /* Tailwind: sky-500 */
+  padding-left: calc(1rem - 4px);
+  border-radius: 0 0.5rem 0.5rem 0; /* rounded right corners */
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.04); /* subtle inset shadow */
+  transition: all 0.2s ease-in-out;
+  font-weight: 500;
 }
+
 
 
 .content {
@@ -147,7 +152,7 @@ border: 1px solid rgba(255, 255, 255, 0.08);
 .welcome-message {
   font-size: 1.2rem;
   font-weight: 500;
-  color: #053f5c;
+  color: #429ebd;
   margin-bottom: 1rem;
 }
 
