@@ -21,8 +21,6 @@ function AppointmentPage() {
     status: "Scheduled",
   });
 
-  
-
   const navigate = useNavigate();
   const [openMenuId, setOpenMenuId] = useState(null);
 
@@ -36,7 +34,6 @@ function AppointmentPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const appointmentsPerPage = 10;
   const menuRef = useRef(null);
-
 
   const filteredAppointments = appointments.filter((appt) =>
     appt.clientName.toLowerCase().includes(searchTerm.toLowerCase())
@@ -73,7 +70,6 @@ function AppointmentPage() {
       [name]: value,
     }));
   };
-
 
   useEffect(() => {
     function handleClickOutside(event) {

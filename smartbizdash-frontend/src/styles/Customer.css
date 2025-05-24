@@ -1,0 +1,218 @@
+/* Container */
+.cust-container {
+  max-width: 1140px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+  background-color: #f9f9f9;
+}
+
+/* Search bar */
+.cust-search {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.8px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  margin-top: 1.9rem;
+  margin-bottom: 1.5rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cust-search:focus {
+  outline: none;
+  border-color: #429ebd;
+  box-shadow: 0 0 8px rgba(66, 158, 189, 0.35);
+}
+
+/* Table */
+.cust-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  table-layout: fixed;
+}
+
+.cust-table thead th {
+  text-align: left;
+  font-weight: 700;
+  color: #555;
+  padding: 0.75rem;
+  border-bottom: 2px solid #429ebd;
+}
+
+.cust-table tbody tr {
+  background: #f5f9ff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(52, 97, 255, 0.08);
+  transition: background-color 0.2s ease;
+}
+
+.cust-table tbody tr:hover {
+  background-color: #e0e9ff;
+}
+
+.cust-table td {
+  padding: 0.75rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+/* Buttons */
+.cust-btn {
+  padding: 0.4rem 0.9rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  background: #eee;
+  color: #333;
+  transition: background-color 0.3s ease;
+  margin: 0 0.25rem;
+}
+
+.cust-btn:hover {
+  background-color: #429ebd;
+  color: white;
+}
+
+/* Input Fields (for editing) */
+.cust-input {
+  padding: 0.5rem 0.8rem;
+  border: 1.8px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.cust-input:focus {
+  outline: none;
+  border-color: #429ebd;
+  box-shadow: 0 0 6px rgba(52, 97, 255, 0.3);
+}
+.cust-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 2rem;
+}
+
+.cust-pagination button.active {
+  background: #429ebd;
+  color: white;
+  border-color: #429ebd;
+  box-shadow: 0 0 8px rgba(52, 97, 255, 0.5);
+}
+
+/* Ensure container has some padding on small screens */
+@media (max-width: 768px) {
+  .cust-container {
+    padding: 0 1rem;
+  }
+
+  /* Search bar full width, slightly smaller font */
+  .cust-search {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  /* Make table horizontally scrollable on small screens */
+  .cust-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+    white-space: nowrap;
+  }
+
+  /* Table headers and cells keep nowrap to maintain structure */
+  .cust-table thead,
+  .cust-table tbody,
+  .cust-table tr,
+  .cust-table th,
+  .cust-table td {
+    display: table;
+    width: auto;
+    white-space: nowrap;
+  }
+
+  /* Make buttons smaller and stacked if needed */
+  .cust-btn {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+    margin: 0.15rem 0.1rem;
+  }
+
+  /* Pagination buttons smaller and wrap if needed */
+  .cust-pagination {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+}
+
+/* For very small mobile screens */
+@media (max-width: 480px) {
+  /* Stack inputs when editing */
+  .cust-input {
+    font-size: 0.9rem;
+  }
+
+  /* Make table layout "stacked" for better readability */
+  .cust-table,
+  .cust-table thead,
+  .cust-table tbody,
+  .cust-table tr,
+  .cust-table th,
+  .cust-table td {
+    display: block;
+    width: 100%;
+  }
+
+  /* Hide the table header row */
+  .cust-table thead tr {
+    display: none;
+  }
+
+  /* Each cell becomes a "row" with a label */
+  .cust-table tbody tr {
+    margin-bottom: 1.5rem;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 0.75rem;
+  }
+
+  .cust-table tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+    white-space: normal; /* allow wrapping */
+  }
+
+  /* Use the data-label attribute to show the column name before each cell */
+  .cust-table tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #429ebd;
+    flex-basis: 50%;
+    white-space: nowrap;
+  }
+
+  /* Last cell (actions) no border */
+  .cust-table tbody td:last-child {
+    border-bottom: none;
+  }
+
+  /* Adjust buttons for smaller view */
+  .cust-btn {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.9rem;
+    margin: 0.2rem 0.1rem 0 0;
+  }
+}

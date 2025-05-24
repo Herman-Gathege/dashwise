@@ -1,4 +1,6 @@
 import os
+from datetime import timedelta
+
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -14,3 +16,6 @@ class Config:
     JWT_TOKEN_LOCATION = ["headers"]
     JWT_HEADER_NAME = "Authorization"
     JWT_HEADER_TYPE = "Bearer"
+
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=15)
+    JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=7)

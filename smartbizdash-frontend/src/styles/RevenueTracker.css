@@ -19,7 +19,7 @@
 .revenue-tracker__widget {
   flex: 1 1 150px;
   min-width: 150px;
-  background-color: #f5f5f5;
+  background-color: #e5e9ec;
   border-radius: 8px;
   padding: 1rem;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);

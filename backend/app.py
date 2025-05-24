@@ -8,6 +8,7 @@ from models import db
 from config import Config
 from auth import auth_bp
 from appointments import appointments_bp
+from customers import customers_bp
 
 load_dotenv()
 
@@ -23,6 +24,7 @@ CORS(app, supports_credentials=True, resources={r"/*": {"origins": "*"}})
 
 app.register_blueprint(auth_bp)
 app.register_blueprint(appointments_bp)
+app.register_blueprint(customers_bp)
 
 
 if __name__ == '__main__':

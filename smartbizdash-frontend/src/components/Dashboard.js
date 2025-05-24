@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AppointmentPage from "./AppointmentPage"; // You'll create this
+import { fetchWithAuth } from "../services/fetchWithAuth";
+
 import "../styles/Dashboard.css"; // Optional: style like TeacherDashboard
 import CompletedAppointmentsWidget from "./CompletedAppointmentsWidget";
 import Navbar from "./Navbar"; // Adjust path if needed
 import RevenueTracker from "./RevenueTracker";
 import { Link } from "react-router-dom";
+import Customers from "./Customers";
 
 import BusinessStatsWidget from "./BusinessStatsWidget";
-
 
 function Dashboard() {
   const [email, setEmail] = useState("");
@@ -20,22 +22,8 @@ function Dashboard() {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const token = localStorage.getItem("token");
-
-      if (!token) {
-        navigate("/login");
-        return;
-      }
-
       try {
-        const res = await fetch("http://localhost:5000/me", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          mode: "cors",
-        });
+        const res = await fetchWithAuth("http://localhost:5000/me");
 
         if (res.ok) {
           const data = await res.json();
@@ -44,11 +32,13 @@ function Dashboard() {
           const errorData = await res.json();
           console.error("Fetch /me error:", errorData);
           localStorage.removeItem("token");
+          localStorage.removeItem("refresh_token");
           navigate("/login");
         }
       } catch (err) {
         console.error("Network error:", err);
         localStorage.removeItem("token");
+        localStorage.removeItem("refresh_token");
         navigate("/login");
       }
     };
@@ -58,6 +48,7 @@ function Dashboard() {
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("refresh_token");
     navigate("/");
   };
 
@@ -70,7 +61,6 @@ function Dashboard() {
             <div className="widget-container">
               <CompletedAppointmentsWidget />
               <BusinessStatsWidget />
-
             </div>
           </>
         );
@@ -78,6 +68,8 @@ function Dashboard() {
         return <AppointmentPage />;
       case "revenue":
         return <RevenueTracker />;
+      case "customers":
+        return <Customers />;
       default:
         return <p>Select a section from the sidebar.</p>;
     }
@@ -117,6 +109,15 @@ function Dashboard() {
           >
             RevenueTracker
           </li>
+          <li
+            onClick={() => {
+              setActiveSection("customers");
+              setSidebarOpen(false);
+            }}
+            className={activeSection === "customers" ? "active" : ""}
+          >
+            Customers
+          </li>
           <li onClick={logout}>Logout</li>
         </ul>
       </div>
@@ -133,6 +134,8 @@ function Dashboard() {
               ? "Appointment Manager"
               : activeSection === "revenue"
               ? "Revenue Tracker"
+              : activeSection === "customers"
+              ? "Customer Manager"
               : "Dashboard"
           }
           email={email}
