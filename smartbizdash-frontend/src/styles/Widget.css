@@ -1,31 +1,64 @@
-.widget-card {
+/* Widget Card - Light Theme */
+/* .widget-card {
   background-color: #f9fafb;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease;
-}
+  padding: 1.5rem 2rem;
+  min-width: 240px;
+  flex: 1 1 240px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: #111827;
+} */
 
 .widget-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
 }
 
+/* Widget Header Row */
 .widget-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 100%;
   gap: 10px;
 }
 
-
-
-.completed-widget .count {
-  font-size: 28px;
-  font-weight: bold;
-  color: #053f5c;
-  margin-top: 10px;
+/* Title Text */
+.completed-widget h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #2563eb; /* blue-600 */
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
+
+/* Subtext Label */
+.completed-widget h6 {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #6b7280; /* gray-500 */
+  margin-top: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Count Value */
+.completed-widget .count {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #111827;
+  margin-top: 0.5rem;
+}
+
+/* Icon Style */
 .widget-icon {
-  font-size: 24px;
-  color: #053f5c; /* green tone for success */
+  font-size: 1.5rem;
+  color: #2563eb; /* consistent with title color */
 }

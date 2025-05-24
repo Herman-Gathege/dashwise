@@ -63,48 +63,86 @@
   background-color: #f0f3fa;
 }
 
+/* === Unified Widget Styling (Glassmorphic) === */
+
 .widget-container {
   display: flex;
-  gap: 1.5rem;
   flex-wrap: wrap;
-  margin-top: 2rem;
+  gap: 1.5rem;
   justify-content: flex-start;
+  margin-top: 2rem;
 }
 
+/* Widget Card */
 .widget-card {
-  background: linear-gradient(135deg, #ffffffcc, #f7f7f7cc);
-  backdrop-filter: blur(10px);
-  border: 1px solid #e0e0e0;
-  padding: 1.5rem 2rem;
+  background: linear-gradient(135deg, rgba(30, 64, 175, 0.65), rgba(17, 24, 39, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 1rem;
+  padding: 1.5rem 2rem;
   min-width: 240px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+  flex: 1 1 240px;
+  backdrop-filter: blur(12px);
+  color: #f1f5f9;
+  box-shadow: 0 8px 20px rgba(0, 255, 255, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  box-shadow: 0 8px 24px rgba(30, 144, 255, 0.15);
+border: 1px solid rgba(255, 255, 255, 0.08);
+
 }
 
 .widget-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 30px rgba(0, 179, 255, 0.15);
 }
 
+/* Header Row */
+.widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 10px;
+}
+
+/* Heading */
 .completed-widget h4 {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  color: #429ebd;
-  margin-bottom: 0.5rem;
+  color: #93cfff;
+  margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
-.completed-widget .count {
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: #053f5c;
+/* Subheading */
+.completed-widget h6 {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #b1b8c5;
+  margin-top: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
+
+/* Main Count */
+.completed-widget .count {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-top: 0.5rem;
+}
+
+/* Icon */
+.widget-icon {
+  font-size: 1.4rem;
+  color: #93cfff;
+}
+
+
 
 .welcome-message {
   font-size: 1.2rem;
@@ -112,6 +150,9 @@
   color: #053f5c;
   margin-bottom: 1rem;
 }
+
+
+
 
 /* 💡 Media Queries for Responsiveness */
 

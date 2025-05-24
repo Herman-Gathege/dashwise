@@ -1,7 +1,6 @@
 // src/components/CompletedAppointmentsWidget.js
 import React, { useEffect, useState } from "react";
 import { FiCheckCircle } from "react-icons/fi"; // optional icon
-import "../styles/Widget.css";
 
 function CompletedAppointmentsWidget() {
   const [completedCount, setCompletedCount] = useState(0);
@@ -46,6 +45,7 @@ function CompletedAppointmentsWidget() {
         <FiCheckCircle className="widget-icon" />
       </div>
       <p className="count">{completedCount}</p>
+      <h6>successful appointments</h6>
     </div>
   );
 }

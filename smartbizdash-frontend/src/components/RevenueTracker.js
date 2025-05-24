@@ -37,10 +37,12 @@ function RevenueTracker() {
       let thisMonth = 0;
       const seenDays = new Set();
 
-      const now = dayjs().utc();
+      const now = dayjs();
+
+
 
       completed.forEach((appt) => {
-        const date = dayjs(appt.date).utc();
+        const date = dayjs(appt.date);
         const fee = appt.fee;
 
         const dayKey = date.format("YYYY-MM-DD");

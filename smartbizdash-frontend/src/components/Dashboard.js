@@ -7,6 +7,9 @@ import Navbar from "./Navbar"; // Adjust path if needed
 import RevenueTracker from "./RevenueTracker";
 import { Link } from "react-router-dom";
 
+import BusinessStatsWidget from "./BusinessStatsWidget";
+
+
 function Dashboard() {
   const [email, setEmail] = useState("");
   const [activeSection, setActiveSection] = useState("dashboard");
@@ -66,6 +69,8 @@ function Dashboard() {
             <h3 className="welcome-message">Welcome, {email}! 👋</h3>
             <div className="widget-container">
               <CompletedAppointmentsWidget />
+              <BusinessStatsWidget />
+
             </div>
           </>
         );
