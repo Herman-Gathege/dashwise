@@ -202,7 +202,7 @@
 }
 
 /* Specific button colors */
-.appt-btn-success:hover {
+/* .appt-btn-success:hover {
   background-color: #218838 !important;
 }
 
@@ -218,7 +218,7 @@
 .appt-btn-danger:hover {
   background-color: #dc3545 !important;
   color: white !important;
-}
+} */
 
 /* Pagination */
 .appt-pagination {
@@ -250,6 +250,49 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+.appt-card-actions-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.appt-btn-menu {
+  font-size: 20px;
+  padding: 6px 10px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.appt-actions-dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  border-radius: 4px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  min-width: 140px;
+}
+
+.appt-actions-dropdown .appt-btn {
+  padding: 8px 12px;
+  text-align: left;
+  border: none;
+  background: none;
+  width: 100%;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.appt-actions-dropdown .appt-btn:hover {
+  background-color: #eee;
+  color: #429ebd;
+}
+
 
 /* Responsive - Mobile & Tablet */
 

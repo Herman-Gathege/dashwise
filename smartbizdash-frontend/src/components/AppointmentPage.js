@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 
 import "../styles/AppointmentPage.css";
 import { useNavigate } from "react-router-dom";
@@ -21,13 +21,22 @@ function AppointmentPage() {
     status: "Scheduled",
   });
 
+  
+
   const navigate = useNavigate();
+  const [openMenuId, setOpenMenuId] = useState(null);
+
+  const toggleMenu = (id) => {
+    setOpenMenuId(openMenuId === id ? null : id);
+  };
 
   const [appointments, setAppointments] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const appointmentsPerPage = 10;
+  const menuRef = useRef(null);
+
 
   const filteredAppointments = appointments.filter((appt) =>
     appt.clientName.toLowerCase().includes(searchTerm.toLowerCase())
@@ -64,6 +73,26 @@ function AppointmentPage() {
       [name]: value,
     }));
   };
+
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setOpenMenuId(null);
+      }
+    }
+
+    if (openMenuId !== null) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    // Cleanup listener on unmount or openMenuId change
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openMenuId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -251,49 +280,73 @@ function AppointmentPage() {
                           {appt.status}
                         </strong>
                       </td>
-                      <td className="appt-actions">
+
+                      <div className="appt-card-actions-menu">
                         <button
-                          onClick={() => updateStatus(appt.id, "Complete")}
-                          className="appt-btn appt-btn-success"
-                          aria-label={`Mark appointment with ${appt.clientName} complete`}
-                          title="Complete"
+                          onClick={() => toggleMenu(appt.id)}
+                          className="appt-btn appt-btn-menu"
+                          aria-label="Open action menu"
+                          title="Actions"
                         >
-                          ✓
-                        </button>
-                        <button
-                          onClick={() => navigate(`/appointments/${appt.id}`)}
-                          className="appt-btn appt-btn-info"
-                          aria-label={`View appointment with ${appt.clientName}`}
-                          title="View"
-                        >
-                          View
-                        </button>
-                        <button
-                          onClick={() => updateStatus(appt.id, "Cancelled")}
-                          className="appt-btn appt-btn-secondary"
-                          aria-label={`Cancel appointment with ${appt.clientName}`}
-                          title="Cancel"
-                        >
-                          ✕
+                          ⋮
                         </button>
 
-                        <button
-                          onClick={() => handleEdit(appt)}
-                          className="appt-btn appt-btn-warning"
-                          aria-label={`Edit appointment with ${appt.clientName}`}
-                          title="Edit"
-                        >
-                          ✎
-                        </button>
-                        <button
-                          onClick={() => handleDelete(appt.id)}
-                          className="appt-btn appt-btn-danger"
-                          aria-label={`Delete appointment with ${appt.clientName}`}
-                          title="Delete"
-                        >
-                          🗑
-                        </button>
-                      </td>
+                        {openMenuId === appt.id && (
+                          <div className="appt-actions-dropdown" ref={menuRef}>
+                            <button
+                              onClick={() => {
+                                navigate(`/appointments/${appt.id}`);
+                                setOpenMenuId(null);
+                              }}
+                              className="appt-btn appt-btn-info"
+                              title="View"
+                            >
+                              👁️ View
+                            </button>
+                            <button
+                              onClick={() => {
+                                updateStatus(appt.id, "Complete");
+                                setOpenMenuId(null);
+                              }}
+                              className="appt-btn appt-btn-success"
+                              title="Mark Complete"
+                            >
+                              ✓ Complete
+                            </button>
+
+                            <button
+                              onClick={() => {
+                                updateStatus(appt.id, "Cancelled");
+                                setOpenMenuId(null);
+                              }}
+                              className="appt-btn appt-btn-secondary"
+                              title="Cancel"
+                            >
+                              ✕ Cancel
+                            </button>
+                            <button
+                              onClick={() => {
+                                handleEdit(appt);
+                                setOpenMenuId(null);
+                              }}
+                              className="appt-btn appt-btn-warning"
+                              title="Edit"
+                            >
+                              ✎ Edit
+                            </button>
+                            <button
+                              onClick={() => {
+                                handleDelete(appt.id);
+                                setOpenMenuId(null);
+                              }}
+                              className="appt-btn appt-btn-danger"
+                              title="Delete"
+                            >
+                              🗑 Delete
+                            </button>
+                          </div>
+                        )}
+                      </div>
                     </tr>
                   ))}
                 </tbody>
@@ -330,6 +383,7 @@ function AppointmentPage() {
                         {appt.status}
                       </span>
                     </div>
+
                     <div className="appt-card-actions">
                       <button
                         onClick={() => updateStatus(appt.id, "Complete")}
