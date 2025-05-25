@@ -1,0 +1,11 @@
+diff --git a/node_modules/flowbite-react/dist/helpers/get-tailwind-version.js b/node_modules/flowbite-react/dist/helpers/get-tailwind-version.js
+index 88846f2..1556722 100644
+--- a/node_modules/flowbite-react/dist/helpers/get-tailwind-version.js
++++ b/node_modules/flowbite-react/dist/helpers/get-tailwind-version.js
+@@ -1,4 +1,5 @@
+-import version from 'tailwindcss/version.js';
++//import version from 'tailwindcss/version.js';
++const version = "3.4.17";
+ 
+ function getTailwindVersion() {
+   try {

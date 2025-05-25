@@ -42,8 +42,11 @@ function PublicNav() {
 
       <div className="nav-links">
         <Link to="/">Home</Link>
+        <Link to="/about">About Us</Link>
+        <Link to="/contact">Contact Us</Link>
         {user && <Link to="/dashboard">Dashboard</Link>}
       </div>
+      
 
       <div className="nav-user">
         {user ? (
