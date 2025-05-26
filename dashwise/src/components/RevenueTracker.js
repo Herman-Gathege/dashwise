@@ -147,7 +147,7 @@ function RevenueTracker() {
 
   return (
     <div className="revenue-tracker">
-      {/* <h2 className="revenue-tracker__heading">Revenue Tracker</h2> */}
+      <h2 className="revenue-tracker__heading">Revenue from completed appointments</h2>
 
       <div className="revenue-tracker__widgets">
         <Widget title="Today" value={totals.today} />

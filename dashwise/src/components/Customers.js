@@ -211,17 +211,42 @@ export default function Customers() {
       </table>
 
       <div className="cust-pagination">
-        {Array.from({ length: totalPages }, (_, i) => (
-          <button
-            key={i}
-            className={`cust-btn ${currentPage === i + 1 ? "active" : ""}`}
-            onClick={() => setCurrentPage(i + 1)}
-            disabled={currentPage === i + 1}
-          >
-            {i + 1}
-          </button>
-        ))}
-      </div>
+  <button
+    className="cust-btn"
+    onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+    disabled={currentPage === 1}
+    aria-label="Previous Page"
+    title="Previous Page"
+  >
+    Previous
+  </button>
+
+  {Array.from({ length: totalPages }, (_, i) => (
+    <button
+      key={i}
+      className={`cust-btn ${currentPage === i + 1 ? "active" : ""}`}
+      onClick={() => setCurrentPage(i + 1)}
+      aria-label={`Go to page ${i + 1}`}
+      title={`Go to page ${i + 1}`}
+      disabled={currentPage === i + 1}
+    >
+      {i + 1}
+    </button>
+  ))}
+
+  <button
+    className="cust-btn"
+    onClick={() =>
+      setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+    }
+    disabled={currentPage === totalPages}
+    aria-label="Next Page"
+    title="Next Page"
+  >
+    Next
+  </button>
+</div>
+
     </div>
   );
 }

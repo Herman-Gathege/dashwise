@@ -121,7 +121,7 @@ function Dashboard() {
             }}
             className={activeSection === "revenue" ? "active" : ""}
           >
-            RevenueTracker
+            Revenue
           </li>
           <li
             onClick={() => {

@@ -6,7 +6,13 @@
   color: #333;
 }
 
-
+.revenue-tracker__heading {
+  text-align: start;
+  margin-bottom: 1.5rem;
+  color: #429ebd;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
 
 .revenue-tracker__widgets {
   display: flex;

@@ -36,7 +36,7 @@ function Home() {
         </div>
 
         <div className="hero-right">
-          <img src="/hero.jpeg" alt="DashWise Preview" className="hero-image" />
+          <img src="/hero2.png" alt="DashWise Preview" className="hero-image" />
         </div>
       </section>
 

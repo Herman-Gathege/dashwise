@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import '../styles/PublicNav.css'; // Optional styles
+import { NavLink, useNavigate } from 'react-router-dom';
+import '../styles/PublicNav.css';
 
 function PublicNav() {
   const [user, setUser] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
 
     if (token) {
-      // Fetch minimal user info
       fetch('http://localhost:5000/me', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        headers: { Authorization: `Bearer ${token}` },
       })
         .then((res) => res.json())
         .then((data) => {
-          if (data?.email) {
-            setUser(data);
-          }
+          if (data?.email) setUser(data);
         })
         .catch(() => setUser(null));
     } else {
@@ -32,23 +28,58 @@ function PublicNav() {
     localStorage.removeItem('token');
     setUser(null);
     navigate('/');
+    setMenuOpen(false);
   };
+
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
 
   return (
     <nav className="global-navbar">
-      <Link to="/" className="nav-logo">
+      <NavLink to="/" className="nav-logo" onClick={() => setMenuOpen(false)} end>
         <img src="/LOGO.png" alt="Logo" />
-      </Link>
+      </NavLink>
 
-      <div className="nav-links">
-        <Link to="/">Home</Link>
-        <Link to="/about">About Us</Link>
-        <Link to="/contact">Contact Us</Link>
-        {user && <Link to="/dashboard">Dashboard</Link>}
+      <button className="hamburger" onClick={toggleMenu} aria-label="Toggle menu">
+        <span className={menuOpen ? "bar open" : "bar"}></span>
+        <span className={menuOpen ? "bar open" : "bar"}></span>
+        <span className={menuOpen ? "bar open" : "bar"}></span>
+      </button>
+
+      <div className={`nav-links ${menuOpen ? 'open' : ''}`}>
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) => (isActive ? 'active' : '')}
+          onClick={() => setMenuOpen(false)}
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to="/about"
+          className={({ isActive }) => (isActive ? 'active' : '')}
+          onClick={() => setMenuOpen(false)}
+        >
+          About Us
+        </NavLink>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) => (isActive ? 'active' : '')}
+          onClick={() => setMenuOpen(false)}
+        >
+          Contact Us
+        </NavLink>
+        {user && (
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) => (isActive ? 'active' : '')}
+            onClick={() => setMenuOpen(false)}
+          >
+            Dashboard
+          </NavLink>
+        )}
       </div>
-      
 
-      <div className="nav-user">
+      <div className={`nav-user ${menuOpen ? 'open' : ''}`}>
         {user ? (
           <>
             <span className="user-email">{user.email}</span>
@@ -59,8 +90,12 @@ function PublicNav() {
           </>
         ) : (
           <>
-            <Link to="/login" className="btn-primary">Log In</Link>
-            <Link to="/signup" className="btn-outline">Sign Up</Link>
+            <NavLink to="/login" className="btn-primary" onClick={() => setMenuOpen(false)}>
+              Log In
+            </NavLink>
+            <NavLink to="/signup" className="btn-outline" onClick={() => setMenuOpen(false)}>
+              Sign Up
+            </NavLink>
           </>
         )}
       </div>

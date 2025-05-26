@@ -8,19 +8,28 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  flex-wrap: wrap;
 }
 
+/* Logo */
 .nav-logo img {
   height: 40px;
 }
 
+/* Nav links */
+.nav-links {
+  display: flex;
+  gap: 1rem;
+}
+
 .nav-links a {
-  margin: 0 1rem;
   color: #053f5c;
   font-weight: 500;
   text-decoration: none;
+  padding: 0.5rem 0;
 }
 
+/* User section */
 .nav-user {
   display: flex;
   align-items: center;
@@ -63,4 +72,76 @@
 .btn-outline {
   border: 2px solid #4299e1;
   color: #4299e1;
+}
+
+/* Hamburger menu button - hidden on desktop */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.bar {
+  width: 25px;
+  height: 3px;
+  background-color: #053f5c;
+  transition: 0.3s;
+  border-radius: 2px;
+}
+
+/* Animate bars into X when open */
+.bar.open:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.bar.open:nth-child(2) {
+  opacity: 0;
+}
+.bar.open:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.nav-links a.active, .nav-user a.active {
+  color: #4299e1;
+  font-weight: 700;
+  border-bottom: 2px solid #4299e1;
+}
+
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links,
+  .nav-user {
+    width: 100%;
+    flex-direction: column;
+    gap: 1rem;
+    display: none;
+  }
+
+  .nav-links.open,
+  .nav-user.open {
+    display: flex;
+  }
+
+  .nav-links a,
+  .nav-user a,
+  .nav-user button,
+  .nav-user span {
+    text-align: center;
+  }
+
+  .nav-user {
+    margin-top: 1rem;
+  }
+
+  .global-navbar {
+    padding: 1rem;
+  }
 }

@@ -78,26 +78,23 @@
   margin-top: 2rem;
 }
 
-/* Widget Card */
 .widget-card {
   background: linear-gradient(135deg, rgba(61, 92, 192, 0.65), rgba(17, 24, 39, 0.9));
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08); /* pick one */
   border-radius: 1rem;
   padding: 1.5rem 2rem;
   min-width: 240px;
   flex: 1 1 240px;
   backdrop-filter: blur(12px);
   color: #f1f5f9;
-  box-shadow: 0 8px 20px rgba(0, 255, 255, 0.08);
+  box-shadow: 0 8px 24px rgba(30, 144, 255, 0.15); /* pick one */
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  box-shadow: 0 8px 24px rgba(30, 144, 255, 0.15);
-border: 1px solid rgba(255, 255, 255, 0.08);
-
 }
+
 
 .widget-card.blue {
   background: linear-gradient(135deg, rgba(61, 92, 192, 0.65), rgba(17, 24, 39, 0.9));
@@ -178,7 +175,7 @@ border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .styled-widget {
-  background-color: #ffffff;
+  background-color: #F5FAFC;
   border: 1px solid #e6e8ec;
   border-radius: 0.75rem;
   padding: 1.5rem;
@@ -193,10 +190,10 @@ border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .styled-widget h3 {
-  font-size: 1.25rem;
+  font-size: 1.0rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #053f5c;
+  color: #429ebd;
 }
 
 .styled-widget .item {
@@ -207,12 +204,12 @@ border: 1px solid rgba(255, 255, 255, 0.08);
   border: 1px solid #f1f3f5;
   border-radius: 0.5rem;
   margin-bottom: 0.75rem;
-  background-color: #f9fafb;
+  background-color: #efeff1;
   transition: background-color 0.2s;
 }
 
 .styled-widget .item:hover {
-  background-color: #f1f3f5;
+  background-color: #e3edf7;
 }
 
 .styled-widget .item .left {
