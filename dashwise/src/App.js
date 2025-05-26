@@ -11,6 +11,7 @@ import PublicNav from './components/PublicNav'; // 👈
 import  Footer from './components/Footer';
 import Contact from './components/Contact';
 import About from './components/About';
+
 // import { Footer } from "flowbite-react";
 
 

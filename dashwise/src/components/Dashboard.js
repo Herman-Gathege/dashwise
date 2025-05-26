@@ -79,7 +79,7 @@ function Dashboard() {
     <div className="dashboard-container">
       <div className={`sidebar ${isSidebarOpen ? "open" : "collapsed"}`}>
         <Link to="/">
-          <img src="/logodash.png" alt="SmartBizDash Logo" className="logo" />
+          <img src="/LOGO.png" alt="SmartBizDash Logo" className="logo" />
         </Link>{" "}
         <ul>
           <li

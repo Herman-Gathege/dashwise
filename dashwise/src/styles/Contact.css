@@ -1,0 +1,120 @@
+/* Contact Page */
+.contact-page {
+  padding: 4rem 5%;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #f8fafc, #e2e8f0);
+  color: #053f5c;
+  max-width: 1100px; /* increased max width for row layout */
+  margin: 0 auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.contact-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  color: #1a202c;
+}
+
+.contact-content-row {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  align-self: stretch; /* <- added */
+  max-width: 100%;
+}
+
+.contact-form,
+.faq-container {
+  flex: 1 1 300px;  /* smaller basis */
+  max-width: 450px; /* slightly smaller max */
+}
+
+
+.contact-form label {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #2d3748;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form input,
+.contact-form textarea {
+  margin-top: 0.5rem;
+  padding: 0.85rem 1.1rem;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #a0aec0;
+  font-style: italic;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #4299e1;
+  outline: none;
+}
+
+.contact-form textarea {
+  min-height: 140px;
+}
+
+.btn-primary {
+  background-color: #4299e1;
+  border: none;
+  padding: 0.85rem 1.8rem;
+  color: white;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  align-self: flex-start;
+}
+
+.btn-primary:hover {
+  background-color: #3182ce;
+}
+
+/* FAQ container styling */
+.faq-container {
+  flex: 1 1 400px;
+  max-width: 500px;
+  /* Add padding if needed */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-page {
+    padding: 2rem 5%;
+  }
+
+  .contact-form {
+    gap: 1.2rem;
+    max-width: 100%;
+  }
+
+  .btn-primary {
+    width: 100%;
+    align-self: center;
+  }
+
+  .faq-container {
+    max-width: 100%;
+    margin-top: 2rem;
+  }
+}

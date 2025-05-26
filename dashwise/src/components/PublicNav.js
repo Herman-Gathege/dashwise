@@ -37,7 +37,7 @@ function PublicNav() {
   return (
     <nav className="global-navbar">
       <Link to="/" className="nav-logo">
-        <img src="/logodash.png" alt="Logo" />
+        <img src="/LOGO.png" alt="Logo" />
       </Link>
 
       <div className="nav-links">

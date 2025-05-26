@@ -7,24 +7,42 @@
   max-width: 800px;
   margin: 0 auto;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.about-page h1 {
-  font-size: 2.8rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: #1a202c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   text-align: center;
 }
 
-.about-page p {
+.about-page .container {
+  width: 100%;
+}
+
+.about-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #1a202c;
+}
+
+.about-intro,
+.about-details,
+.about-target,
+.about-cta {
   font-size: 1.1rem;
   color: #2d3748;
   line-height: 1.6;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
   text-align: justify;
 }
 
+.about-cta {
+  font-weight: 600;
+  color: #1a202c;
+}
 
 /* Contact Page */
 .contact-page {

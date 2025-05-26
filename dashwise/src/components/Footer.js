@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="app-footer">
       <div className="container">
         <p className="copyright">
-          &copy; {new Date().getFullYear()} SmartBiz™. All rights reserved.
+          &copy; {new Date().getFullYear()} DashWise™. All rights reserved.
         </p>
         <nav className="footer-nav">
           <Link to="/">Home</Link>
