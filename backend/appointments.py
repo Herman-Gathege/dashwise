@@ -116,3 +116,21 @@ def get_single_appointment(appointment_id):
         "status": appointment.status,
         "notes": appointment.notes
     }), 200
+
+
+@appointments_bp.route("/appointments/scheduled", methods=["GET"])
+@jwt_required()
+def get_scheduled_appointments():
+    user_id = get_jwt_identity()
+    appointments = Appointment.query.filter_by(user_id=user_id, status="Scheduled").order_by(Appointment.date, Appointment.time).all()
+
+    result = [
+        {
+            "clientName": appt.client_name,
+            "date": appt.date,
+            "time": appt.time,
+            "service": appt.service
+        }
+        for appt in appointments
+    ]
+    return jsonify(result), 200

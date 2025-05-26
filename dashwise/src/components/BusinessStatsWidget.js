@@ -30,7 +30,7 @@ function BusinessStatsWidget() {
 
   return (
     <>
-      <div className="widget-card completed-widget">
+      <div className="widget-card completed-widget green">
         <div className="widget-header">
           <h4>Total Earnings</h4>
           <FaMoneyBillWave className="widget-icon" />
@@ -39,7 +39,7 @@ function BusinessStatsWidget() {
         <h6>Within current month</h6>
       </div>
 
-      <div className="widget-card completed-widget">
+      <div className="widget-card completed-widget blue">
         <div className="widget-header">
           <h4>Customer Count</h4>
           <FaUsers className="widget-icon" />

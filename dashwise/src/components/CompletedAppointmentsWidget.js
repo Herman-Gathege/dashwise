@@ -38,7 +38,7 @@ function CompletedAppointmentsWidget() {
     //   <p className="count">{completedCount}</p>
     // </div>
 
-    <div className="widget-card completed-widget">
+    <div className="widget-card completed-widget purple">
       <div className="widget-header">
         
         <h4 >Completed Appointments</h4>

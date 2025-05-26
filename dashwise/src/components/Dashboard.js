@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 import Customers from "./Customers";
 
 import BusinessStatsWidget from "./BusinessStatsWidget";
+import TopCustomersWidget from "./TopCustomersWidget";
+import ScheduledAppointmentsWidget from "./ScheduledAppointmentsWidget";
 
 function Dashboard() {
   const [email, setEmail] = useState("");
@@ -58,9 +60,21 @@ function Dashboard() {
         return (
           <>
             <h3 className="welcome-message">Welcome, {email}! 👋</h3>
+
+            {/* First row with 3 widgets */}
             <div className="widget-container">
               <CompletedAppointmentsWidget />
               <BusinessStatsWidget />
+            </div>
+
+            {/* New row with styled list-based widgets */}
+            <div className="widget-row styled-widgets">
+              <div className="styled-widget">
+                <ScheduledAppointmentsWidget />
+              </div>
+              <div className="styled-widget">
+                <TopCustomersWidget />
+              </div>
             </div>
           </>
         );

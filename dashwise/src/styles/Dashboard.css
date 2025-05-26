@@ -80,7 +80,7 @@
 
 /* Widget Card */
 .widget-card {
-  background: linear-gradient(135deg, rgba(30, 64, 175, 0.65), rgba(17, 24, 39, 0.9));
+  background: linear-gradient(135deg, rgba(61, 92, 192, 0.65), rgba(17, 24, 39, 0.9));
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 1rem;
   padding: 1.5rem 2rem;
@@ -98,6 +98,19 @@
 border: 1px solid rgba(255, 255, 255, 0.08);
 
 }
+
+.widget-card.blue {
+  background: linear-gradient(135deg, rgba(61, 92, 192, 0.65), rgba(17, 24, 39, 0.9));
+}
+
+.widget-card.purple {
+  background: linear-gradient(135deg, rgba(129, 62, 236, 0.6), rgba(17, 24, 39, 0.9));
+}
+
+.widget-card.green {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.6), rgba(17, 24, 39, 0.9));
+}
+
 
 .widget-card:hover {
   transform: translateY(-4px);
@@ -155,6 +168,68 @@ border: 1px solid rgba(255, 255, 255, 0.08);
   color: #429ebd;
   margin-bottom: 1rem;
 }
+
+.widget-row.styled-widgets {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.styled-widget {
+  background-color: #ffffff;
+  border: 1px solid #e6e8ec;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  flex: 1 1 48%;
+  min-width: 320px;
+  transition: box-shadow 0.2s ease;
+}
+
+.styled-widget:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.styled-widget h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #053f5c;
+}
+
+.styled-widget .item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border: 1px solid #f1f3f5;
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+  background-color: #f9fafb;
+  transition: background-color 0.2s;
+}
+
+.styled-widget .item:hover {
+  background-color: #f1f3f5;
+}
+
+.styled-widget .item .left {
+  font-weight: 500;
+  color: #053f5c;
+}
+
+.styled-widget .item .right {
+  font-weight: 600;
+  color: #429ebd;
+}
+
+
+
+
+
+
 
 
 
@@ -280,3 +355,13 @@ border: 1px solid rgba(255, 255, 255, 0.08);
   }
 }
 
+
+@media (max-width: 768px) {
+  .widget-row.styled-widgets {
+    flex-direction: column;
+  }
+
+  .widget-row.styled-widgets .styled-widget {
+    flex: 1 1 100%;
+  }
+}
