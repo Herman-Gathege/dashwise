@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"; // ensure Bootstrap is imported
 
-
-// import '../styles/PublicNav.css';
+import '../styles/PublicNav.css';
 
 function PublicNav() {
   const [user, setUser] = useState(null);
@@ -133,13 +132,20 @@ function PublicNav() {
               <>
                 <NavLink
                   to="/login"
-                  className="btn btn-primary"
-                  style={{ backgroundColor: "#4299e1", borderColor: "#4299e1",  textAlign: "center"  }}
+                  className="btn btn-primary btn-sm"
+                  style={{
+                    backgroundColor: "#4299e1",
+                    borderColor: "#4299e1",
+                    textAlign: "center",
+                  }}
                 >
                   Log In
                 </NavLink>
 
-                <NavLink to="/signup" className="btn btn-outline-primary">
+                <NavLink
+                  to="/signup"
+                  className="btn btn-outline-primary btn-sm"
+                >
                   Sign Up
                 </NavLink>
               </>
