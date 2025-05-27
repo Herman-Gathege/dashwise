@@ -85,3 +85,47 @@
   background-color: #429ebd;
   fill: #429ebd;
 }
+
+.revenue-tracker__export-buttons {
+  display: flex;
+  justify-content: flex-end; /* pushes children (buttons) to the right */
+  gap: 12px; /* spacing between buttons */
+  margin-bottom: 20px; /* optional spacing below buttons */
+}
+
+.export-btn {
+  background-color: #429ebd;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 4px 8px rgba(5, 63, 92, 0.3);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+
+.export-btn:hover,
+.export-btn:focus {
+  background-color: #076789;
+  box-shadow: 0 6px 12px rgba(7, 103, 137, 0.5);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.export-btn:active {
+  background-color: #02425a;
+  box-shadow: 0 2px 4px rgba(2, 66, 90, 0.6);
+  transform: translateY(0);
+}
+
+.export-btn:disabled {
+  background-color: #999999;
+  cursor: not-allowed;
+  box-shadow: none;
+  color: #dddddd;
+}
+

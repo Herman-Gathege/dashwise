@@ -3,6 +3,8 @@ import { fetchAppointments } from "../services/appointmentsService";
 import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
 import dayjs from "dayjs";
+import "jspdf-autotable";
+import Papa from "papaparse";
 import utc from "dayjs/plugin/utc";
 import "../styles/RevenueTracker.css";
 
@@ -39,8 +41,6 @@ function RevenueTracker() {
 
       const now = dayjs();
 
-
-
       completed.forEach((appt) => {
         const date = dayjs(appt.date);
         const fee = appt.fee;
@@ -69,7 +69,8 @@ function RevenueTracker() {
       });
 
       const totalRevenue = completed.reduce((sum, a) => sum + a.fee, 0);
-      const averagePerDay = seenDays.size > 0 ? totalRevenue / seenDays.size : 0;
+      const averagePerDay =
+        seenDays.size > 0 ? totalRevenue / seenDays.size : 0;
 
       setRevenueData({ daily, weekly, monthly });
       setTotals({ today, thisWeek, thisMonth, averagePerDay });
@@ -145,9 +146,35 @@ function RevenueTracker() {
     </div>
   );
 
+  const exportToCSV = () => {
+    const csvData = Object.entries(revenueData[view]).map(([date, value]) => ({
+      Date: date,
+      Revenue: value.toFixed(2),
+    }));
+
+    const csv = Papa.unparse(csvData);
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", `Revenue-${view}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div className="revenue-tracker">
-      <h2 className="revenue-tracker__heading">Revenue from completed appointments</h2>
+      <div className="revenue-tracker__export-buttons">
+        <button onClick={exportToCSV} className="export-btn">
+          Export CSV
+        </button>
+      </div>
+      <h2 className="revenue-tracker__heading">
+        Revenue from completed appointments
+      </h2>
+      
 
       <div className="revenue-tracker__widgets">
         <Widget title="Today" value={totals.today} />

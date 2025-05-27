@@ -2,13 +2,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   padding: 1rem 5%;
-  background-color: #ffffff;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
   z-index: 100;
-  flex-wrap: wrap;
 }
 
 /* Logo */
@@ -16,7 +16,7 @@
   height: 40px;
 }
 
-/* Nav links */
+/* Nav Links */
 .nav-links {
   display: flex;
   gap: 1rem;
@@ -29,7 +29,14 @@
   padding: 0.5rem 0;
 }
 
-/* User section */
+.nav-links a.active,
+.nav-user a.active {
+  color: #4299e1;
+  font-weight: 700;
+  border-bottom: 2px solid #4299e1;
+}
+
+/* User Section */
 .nav-user {
   display: flex;
   align-items: center;
@@ -38,7 +45,7 @@
 
 .avatar {
   background-color: #4299e1;
-  color: white;
+  color: #fff;
   border-radius: 50%;
   width: 36px;
   height: 36px;
@@ -56,17 +63,20 @@
   font-weight: 500;
 }
 
+/* Buttons */
 .btn-primary,
 .btn-outline {
   padding: 0.4rem 0.9rem;
   border-radius: 5px;
   font-weight: 500;
   text-decoration: none;
+  text-align: center;
+  display: inline-block;
 }
 
 .btn-primary {
   background-color: #4299e1;
-  color: white;
+  color: #fff;
 }
 
 .btn-outline {
@@ -74,7 +84,7 @@
   color: #4299e1;
 }
 
-/* Hamburger menu button - hidden on desktop */
+/* Hamburger */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -93,25 +103,19 @@
   border-radius: 2px;
 }
 
-/* Animate bars into X when open */
 .bar.open:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
+
 .bar.open:nth-child(2) {
   opacity: 0;
 }
+
 .bar.open:nth-child(3) {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-.nav-links a.active, .nav-user a.active {
-  color: #4299e1;
-  font-weight: 700;
-  border-bottom: 2px solid #4299e1;
-}
-
-
-/* Responsive styles */
+/* Responsive */
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
@@ -119,10 +123,11 @@
 
   .nav-links,
   .nav-user {
-    width: 100%;
-    flex-direction: column;
-    gap: 1rem;
     display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    margin-top: 1rem;
   }
 
   .nav-links.open,
@@ -135,10 +140,6 @@
   .nav-user button,
   .nav-user span {
     text-align: center;
-  }
-
-  .nav-user {
-    margin-top: 1rem;
   }
 
   .global-navbar {

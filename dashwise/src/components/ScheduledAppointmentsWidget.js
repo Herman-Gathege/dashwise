@@ -22,7 +22,7 @@ const ScheduledAppointmentsWidget = () => {
       {appointments.map((appt, idx) => (
         <div className="item" key={idx}>
           <div className="left">
-            {appt.service} – {appt.clientName}
+          {appt.clientName}   – {appt.service}
           </div>
           <div className="right">
             {appt.time} <br /> {appt.date}

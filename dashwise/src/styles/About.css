@@ -4,7 +4,7 @@
   min-height: 100vh;
   background: linear-gradient(to bottom right, #f8fafc, #e2e8f0);
   color: #053f5c;
-  max-width: 800px;
+  /* max-width: 800px; */
   margin: 0 auto;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: flex;
