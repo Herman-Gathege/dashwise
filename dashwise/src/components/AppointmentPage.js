@@ -23,6 +23,7 @@ function AppointmentPage() {
 
   const navigate = useNavigate();
   const [openMenuId, setOpenMenuId] = useState(null);
+  const formRef = useRef(null);
 
   const toggleMenu = (id) => {
     setOpenMenuId(openMenuId === id ? null : id);
@@ -146,6 +147,11 @@ function AppointmentPage() {
       status: appointment.status || "Scheduled",
     });
     setEditingId(appointment.id);
+
+    // Scroll to the form section
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100); // delay ensures DOM updates before scroll
   };
 
   const updateStatus = async (id, newStatus) => {
@@ -160,7 +166,7 @@ function AppointmentPage() {
 
   return (
     <div className="appt-container">
-      <div className="form-section">
+      <div className="form-section" ref={formRef}>
         <h4 className="form-head">
           {editingId ? "Edit Appointment" : "Add Appointment"}
         </h4>
