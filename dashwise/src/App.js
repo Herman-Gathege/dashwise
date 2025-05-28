@@ -1,23 +1,32 @@
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Login from './components/Login';
-import Signup from './components/Signup';
-import Dashboard from './components/Dashboard';
-import Home from './components/Home';
-import PrivateRoute from './components/PrivateRoute';
-import AppointmentDetails from './components/AppointmentDetails';
-import PublicNav from './components/PublicNav'; // 👈
-import  Footer from './components/Footer';
-import Contact from './components/Contact';
-import About from './components/About';
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import Dashboard from "./components/Dashboard";
+import Home from "./components/Home";
+import PrivateRoute from "./components/PrivateRoute";
+import AppointmentDetails from "./components/AppointmentDetails";
+import PublicNav from "./components/PublicNav";
+import Footer from "./components/Footer";
+import Contact from "./components/Contact";
+import About from "./components/About";
 
-// import { Footer } from "flowbite-react";
+function AppContent() {
+  const location = useLocation();
 
+  // Hide footer for these paths
+  const hideFooter =
+    location.pathname.startsWith("/dashboard") ||
+    location.pathname.startsWith("/appointments");
 
-function App() {
   return (
-    <Router>
+    <>
       <Routes>
         {/* Public routes WITH PublicNav */}
         <Route
@@ -72,7 +81,6 @@ function App() {
           element={
             <PrivateRoute>
               <Dashboard />
-
             </PrivateRoute>
           }
         />
@@ -81,12 +89,21 @@ function App() {
           element={
             <PrivateRoute>
               <AppointmentDetails />
-
             </PrivateRoute>
           }
         />
       </Routes>
-      <Footer />
+
+      {/* Conditionally render footer */}
+      {!hideFooter && <Footer />}
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 }

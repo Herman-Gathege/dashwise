@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styles/AppointmentDetail.css";
 
@@ -11,11 +11,13 @@ const getAuthHeaders = () => ({
 
 function AppointmentDetail() {
   const { id } = useParams();
-  const navigate = useNavigate(); // <-- Added for navigation
+  const navigate = useNavigate();
   const [appointment, setAppointment] = useState(null);
   const [notes, setNotes] = useState("");
+  const [saveStatus, setSaveStatus] = useState(null); // 'saving', 'saved', 'error'
+  const textareaRef = useRef(null);
 
-  // Fetch the appointment by ID
+  // Fetch appointment by ID
   useEffect(() => {
     fetch(`${API_URL}/${id}`, { headers: getAuthHeaders() })
       .then((res) => {
@@ -29,12 +31,21 @@ function AppointmentDetail() {
       .catch((err) => console.error("Fetch error:", err));
   }, [id]);
 
-  // Update the notes field while preserving other appointment data
-  const handleNotesUpdate = () => {
-    const updatedAppointment = {
-      ...appointment,
-      notes, // override only the notes field
-    };
+  // Auto-resize textarea based on content
+  useEffect(() => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto"; // reset height
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`; // set to scrollHeight
+    }
+  }, [notes]);
+
+  // Autosave notes on blur
+  const handleBlur = () => {
+    if (!appointment) return;
+    if (notes === appointment.notes) return; // no changes, no save
+
+    setSaveStatus("saving");
+    const updatedAppointment = { ...appointment, notes };
 
     fetch(`${API_URL}/${id}`, {
       method: "PUT",
@@ -46,10 +57,14 @@ function AppointmentDetail() {
         return res.json();
       })
       .then(() => {
-        alert("Notes updated");
         setAppointment((prev) => ({ ...prev, notes }));
+        setSaveStatus("saved");
+        setTimeout(() => setSaveStatus(null), 2000); // clear message after 2 sec
       })
-      .catch((err) => console.error("Update error:", err));
+      .catch(() => {
+        setSaveStatus("error");
+        setTimeout(() => setSaveStatus(null), 3000);
+      });
   };
 
   if (!appointment) return <p>Loading...</p>;
@@ -57,43 +72,31 @@ function AppointmentDetail() {
   return (
     <div className="detail-container">
       <h3>Appointment Details</h3>
-      <p>
-        <strong>Client:</strong> {appointment.clientName}
-      </p>
-      <p>
-        <strong>Contact:</strong> {appointment.clientContact}
-      </p>
-      <p>
-        <strong>Service:</strong> {appointment.service}
-      </p>
-      <p>
-        <strong>Date:</strong> {appointment.date}
-      </p>
-      <p>
-        <strong>Time:</strong> {appointment.time}
-      </p>
-      <p>
-        <strong>Status:</strong> {appointment.status}
-      </p>
-      <p>
-        <strong>Fee:</strong> {appointment.fee}
-      </p>
+      <p><strong>Client:</strong> {appointment.clientName}</p>
+      <p><strong>Contact:</strong> {appointment.clientContact}</p>
+      <p><strong>Service:</strong> {appointment.service}</p>
+      <p><strong>Date:</strong> {appointment.date}</p>
+      <p><strong>Time:</strong> {appointment.time}</p>
+      <p><strong>Status:</strong> {appointment.status}</p>
+      <p><strong>Fee:</strong> {appointment.fee}</p>
 
-      <label>
-        <strong>Notes:</strong>
-      </label>
+      <label htmlFor="notes"><strong>Notes:</strong></label>
       <textarea
+        id="notes"
+        ref={textareaRef}
         value={notes}
         onChange={(e) => setNotes(e.target.value)}
-        placeholder="Enter notes here..."
-        rows={6}
+        onBlur={handleBlur}
+        placeholder="Add your notes here..."
         className="detail-notes"
+        rows={4}
+        style={{ resize: "vertical", minHeight: "100px" }}
       />
+      {saveStatus === "saving" && <p className="save-status">Saving...</p>}
+      {saveStatus === "saved" && <p className="save-status success">Notes saved ✓</p>}
+      {saveStatus === "error" && <p className="save-status error">Error saving notes!</p>}
 
       <div className="detail-buttons">
-        <button onClick={handleNotesUpdate} className="btn btn-primary">
-          Save Notes
-        </button>
         <button onClick={() => navigate(-1)} className="btn btn-secondary">
           ← Go Back
         </button>
