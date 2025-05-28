@@ -31,7 +31,7 @@
 
 .nav-links a.active,
 .nav-user a.active {
-  color: #4299e1;
+  color: #4299e1 !important;
   font-weight: 700;
   border-bottom: 2px solid #4299e1;
 }

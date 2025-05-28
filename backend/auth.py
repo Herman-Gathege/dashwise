@@ -93,3 +93,22 @@ def me():
         return jsonify({"email": user.email}), 200
     except Exception as e:
         return jsonify({"error": "Failed to fetch user info", "details": str(e)}), 500
+
+
+@auth_bp.route("/change-password", methods=["POST"])
+@jwt_required()
+def change_password():
+    user_id = get_jwt_identity()
+    data = request.get_json()
+    current = data.get("currentPassword")
+    new = data.get("newPassword")
+
+    user = User.query.get(user_id)
+
+    if not user or not user.check_password(current):
+        return jsonify({"error": "Incorrect current password"}), 400
+
+    user.set_password(new)
+    db.session.commit()
+
+    return jsonify({"message": "Password changed successfully"}), 200

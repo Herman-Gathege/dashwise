@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AppointmentPage from "./AppointmentPage"; // You'll create this
+import SettingsPage from "./SettingsPage";
 import { fetchWithAuth } from "../services/fetchWithAuth";
 
 import "../styles/Dashboard.css"; // Optional: style like TeacherDashboard
@@ -46,6 +47,12 @@ function Dashboard() {
     };
 
     fetchUser();
+
+    // Listen for settings event from Navbar
+    const handleGoToSettings = () => setActiveSection("settings");
+    window.addEventListener("goToSettings", handleGoToSettings);
+
+    return () => window.removeEventListener("goToSettings", handleGoToSettings);
   }, [navigate]);
 
   const logout = () => {
@@ -84,6 +91,8 @@ function Dashboard() {
         return <RevenueTracker />;
       case "customers":
         return <Customers />;
+      case "settings":
+        return <SettingsPage />;
       default:
         return <p>Select a section from the sidebar.</p>;
     }
@@ -132,6 +141,15 @@ function Dashboard() {
           >
             Customers
           </li>
+          <li
+            onClick={() => {
+              setActiveSection("settings");
+              setSidebarOpen(false);
+            }}
+            className={activeSection === "settings" ? "active" : ""}
+          >
+            Settings
+          </li>
           <li onClick={logout}>Logout</li>
         </ul>
       </div>
@@ -150,6 +168,8 @@ function Dashboard() {
               ? "Revenue Tracker"
               : activeSection === "customers"
               ? "Customer Manager"
+              : activeSection === "settings"
+              ? "Settings"
               : "Dashboard"
           }
           email={email}
